@@ -58,18 +58,26 @@ This will automatically add two actions `undo` and `redo` as well as two getters
 ### Example
 
 ```vue
+
 <template>
-    <div>
-        <button :disabled="!store.canUndo" @click="undo">Undo</button>
-        <button :disabled="!store.canRedo" @click="redo">Redo</button>
-        <input type="number" v-model="store.count" />
-    </div>
-</template> 
+  <div>
+    <button :disabled="!store.canUndo" @click="undo">Undo</button>
+    <button :disabled="!store.canRedo" @click="redo">Redo</button>
+    <input type="number" v-model="store.count"/>
+  </div>
+</template>
 
 <script lang="ts" setup>
-import { useStore } from '@/store'
+  import { useStore } from '@/store';
 
-const store = useStore()
+  const store = useStore();
+
+  store.count = 5;
+  store.undo(); // undoes the previous assignment of 5
+  console.log(store.count); // => 2
+  store.redo(); // redoes the earlier assignment of 5
+  console.log(store.count); // => 5
+
 </script>
 ```
 
