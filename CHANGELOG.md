@@ -19,7 +19,8 @@
 * **history:** history plugin base ([faa3d2d](https://github.com/yassilah/pinia-plugin-history/commit/faa3d2dcf0b618042a620abe0a9cb6bcef717bdc))
 * **jsondiffpatch:** Use jsondiffpatch to reduce storage ([b0b5cc8](https://github.com/yassilah/pinia-plugin-history/commit/b0b5cc82693e9dcd7979edcd64162e63664e4218))
 * **lzutf8:** Compress/decompress string ([1c58779](https://github.com/yassilah/pinia-plugin-history/commit/1c58779a57ee293155c9aec6515693a22972d281))
-* **peeky:** use peeky and fix tests ([780fff0](https://github.com/yassilah/pinia-plugin-history/commit/780fff039859b792014d0ea505e1c6acd28275d0))
+* use @emanimation/js-serial-js to clone obj, add omit option & fix various issues ([43445f9](https://github.com/yassilah/pinia-plugin-history/commit/43445f97cf1804604a5cd8fa85b33b7f958501c2))
+* use vitest, fix tests & bump pinia to latest ver ([d115138](https://github.com/yassilah/pinia-plugin-history/commit/d115138616506373f470b62855251aaaa4db7cd6))
 
 
 
