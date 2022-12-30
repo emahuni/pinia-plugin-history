@@ -1,6 +1,6 @@
 {
-  "name": "pinia-plugin-history",
-  "version": "1.3.0",
+  "name": "@emanimation/pinia-plugin-history",
+  "version": "1.3.1",
   "description": "Create a history (undo/redo) in your pinia 🍍 stores!",
   "publishConfig": {
     "access": "public"
@@ -15,16 +15,22 @@
     "import": "./dist/index.mjs"
   },
   "sideEffects": false,
-  "author": {
-    "name": "Yasser Lahbibi",
-    "email": "yasser.lahbibi@sciencespo.fr"
-  },
+  "authors": [
+    {
+      "name": "Yasser Lahbibi",
+      "email": "yasser.lahbibi@sciencespo.fr"
+    },
+    {
+      "name": "Emmanuel Mahuni",
+      "email": "emahuni@gmail.com"
+    }
+  ],
   "scripts": {
-    "dev": "peeky open",
+    "dev": "vitest --browser",
     "release": "node scripts/release.mjs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
-    "test:open": "peeky open",
-    "test": "peeky run",
+    "test:open": "vitest --browser",
+    "test": "vitest",
     "lint": "prettier -c --parser typescript \"src/**/*.[jt]s?(x)\"",
     "lint:fix": "yarn run lint --write",
     "test:types": "tsc --build ./tsconfig.json",
@@ -47,9 +53,13 @@
     "redo"
   ],
   "license": "MIT",
+  "dependencies": {
+    "lzutf8": "^0.6.0"
+  },
   "devDependencies": {
-    "@peeky/cli": "^0.3.0",
+    "@pinia/testing": "^0.0.14",
     "@types/node": "^16.4.13",
+    "@vitest/browser": "^0.26.2",
     "chalk": "^4.1.2",
     "conventional-changelog-cli": "^2.1.1",
     "enquirer": "^2.3.6",
@@ -59,13 +69,14 @@
     "minimist": "^1.2.5",
     "mock-local-storage": "^1.1.17",
     "nyc": "^15.1.0",
-    "pinia": "^2.0.0-rc.3",
+    "pinia": "^2.0.28",
     "prettier": "^2.0.5",
     "semver": "^7.3.5",
     "source-map-support": "^0.5.19",
     "ts-node": "^10.1.0",
     "tsup": "^4.13.1",
     "typescript": "^4.3.5",
+    "vitest": "^0.26.2",
     "vue": "^3.2.0-beta.7",
     "yorkie": "^2.0.0"
   },
@@ -88,8 +99,5 @@
   "bugs": {
     "url": "https://github.com/yassilah/pinia-plugin-history/issues"
   },
-  "homepage": "https://github.com/yassilah/pinia-plugin-history#readme",
-  "dependencies": {
-    "lzutf8": "^0.6.0"
-  }
+  "homepage": "https://github.com/yassilah/pinia-plugin-history#readme"
 }
