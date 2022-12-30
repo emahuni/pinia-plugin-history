@@ -1,6 +1,6 @@
 {
   "name": "@emanimation/pinia-plugin-history",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "description": "Create a history (undo/redo) in your pinia 🍍 stores!",
   "publishConfig": {
     "access": "public"
@@ -54,7 +54,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lzutf8": "^0.6.0"
+    "lzutf8": "^0.6.0",
+    "@emanimation/js-serial-js": "^1.0.0"
   },
   "devDependencies": {
     "@pinia/testing": "^0.0.14",

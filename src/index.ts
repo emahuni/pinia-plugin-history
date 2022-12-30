@@ -1,5 +1,6 @@
 import { PiniaPluginContext, Store, SubscriptionCallbackMutation } from 'pinia';
 import { computed, ComputedRef, reactive } from 'vue';
+import { stringify, parse } from '@emanimation/js-serial-js';
 import lzutf8 from 'lzutf8';
 
 const { compress, decompress } = lzutf8;
@@ -56,6 +57,7 @@ declare module 'pinia' {
 export interface HistoryPluginOptions {
   max: number;
   persistent: boolean;
+  omit: Array<string>;
   persistentStrategy: {
     get (store: HistoryStore, type: 'undo' | 'redo'): string[] | undefined
     set (store: HistoryStore, type: 'undo' | 'redo', value: string[]): void
@@ -78,7 +80,7 @@ export interface History extends HistoryPluginOptions {
   done: string[];
   undone: string[];
   current: string;
-  trigger: boolean;
+  preventUpdateOnSubscribe: boolean;
 }
 
 export interface HistoryStore
@@ -92,6 +94,7 @@ export interface HistoryStore
 export const BasePiniaHistoryOptions = {
   max:                10,
   persistent:         false,
+  omit:               [],
   persistentStrategy: {
     get (store: HistoryStore, type: 'undo' | 'redo'): string[] | undefined {
       if (typeof localStorage !== undefined) {
@@ -140,6 +143,25 @@ function mergeOptions (options: boolean | Partial<HistoryPluginOptions>) {
     ...BasePiniaHistoryOptions,
     ...(typeof options === 'boolean' ? {} : options),
   } as HistoryPluginOptions;
+}
+
+
+/**
+ * Clone store state and remove omitted properties from the store state.
+ * @param store The store the plugin is augmenting.
+ * @param $history
+ * @param state
+ * @returns {string} State of the store without omitted keys.
+ */
+function cloneRemoveOmittedKeys (store: HistoryStore, $history: History, state?: Store['$state']): string {
+  const src = !!state ? stringify(state) : stringify(store.$state);
+  const clone = parse (src );
+  if ($history.omit.length) {
+    $history.omit.forEach((key) => {
+      delete clone[key];
+    });
+  }
+  return stringify(clone);
 }
 
 /**
@@ -223,9 +245,9 @@ function createStackMethod (
       
       reverseStack.push(current);
       
-      $history.trigger = false;
-      $store.$patch(JSON.parse(state));
-      $history.trigger = true;
+      $history.preventUpdateOnSubscribe = false;
+      $store.$patch(Object.assign({}, $store.$state, parse( state)));
+      $history.preventUpdateOnSubscribe = true;
       
       persistHistory($store, $history);
     }
@@ -242,19 +264,19 @@ function createStackMethod (
  */
 function createWatcher ($store: HistoryStore, $history: History) {
   return (_mutation: SubscriptionCallbackMutation<any>, state: HistoryStore['$state']) => {
-    const { trigger, max, done, current } = $history;
+    const { preventUpdateOnSubscribe, max, done, current } = $history;
     
-    if (trigger) {
+    if (preventUpdateOnSubscribe) {
       if (done.length >= max) {
         done.splice(0, 1);
       }
       
       done.push(current);
-      $history.undone = [];
+      $history.undone = []; // todo is this correct or we need to push something into undone
       persistHistory($store, $history);
     }
     
-    $history.current = JSON.stringify(state);
+    $history.current = cloneRemoveOmittedKeys($store, $history, state);
   };
 }
 
@@ -286,20 +308,23 @@ export const PiniaHistory = ({ options, store }: PiniaPluginContext) => {
   const { history } = options;
   
   if (history) {
-    const { max, persistent, persistentStrategy } = mergeOptions(history);
+    const { max, omit, persistent, persistentStrategy } = mergeOptions(history);
     
     const $store = store as HistoryStore;
     
     const $history = reactive({
       max,
+      omit,
       persistent,
       persistentStrategy,
-      done:        [],
-      undone:      [],
-      current:     JSON.stringify($store.$state),
-      trigger:     true,
-      resetUndone: false,
+      done:                     [],
+      undone:                   [],
+      current:                  '',
+      preventUpdateOnSubscribe: true,
+      resetUndone:              false,
     } as History);
+    
+    $history.current = cloneRemoveOmittedKeys($store, $history);
     
     store.canUndo = computed(() => $history.done.length > 0);
     

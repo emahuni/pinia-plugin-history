@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@emanimation/js-serial-js': ^1.0.0
   '@pinia/testing': ^0.0.14
   '@types/node': ^16.4.13
   '@vitest/browser': ^0.26.2
@@ -26,6 +27,7 @@ specifiers:
   yorkie: ^2.0.0
 
 dependencies:
+  '@emanimation/js-serial-js': 1.0.0
   lzutf8: 0.6.3
 
 devDependencies:
@@ -262,6 +264,13 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
+
+  /@emanimation/js-serial-js/1.0.0:
+    resolution: {integrity: sha512-GmNyBwMNH7VsFonTnvM+5stMQO6rFs632kb63wMn4TdVU7h+agruMTgMfbPoORT2rEZ71Tav5my6tRdY4deVVQ==}
+    dependencies:
+      serialize-javascript: 6.0.0
+      superjson: 1.12.1
+    dev: false
 
   /@esbuild/android-arm/0.16.12:
     resolution: {integrity: sha512-CTWgMJtpCyCltrvipZrrcjjRu+rzm6pf9V8muCsJqtKujR3kPmU4ffbckvugNNaRmhxAF1ZI3J+0FUIFLFg8KA==}
@@ -1260,6 +1269,13 @@ packages:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
 
+  /copy-anything/3.0.3:
+    resolution: {integrity: sha512-fpW2W/BqEzqPp29QS+MwwfisHCQZtiduTe/m8idFo0xbti9fIZ2WVhAsCv4ggFVH3AgCkVdpoOCtQC6gBrdhjw==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      is-what: 4.1.8
+    dev: false
+
   /core-js/3.27.1:
     resolution: {integrity: sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==}
     requiresBuild: true
@@ -2136,6 +2152,11 @@ packages:
     resolution: {integrity: sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==}
     dev: true
 
+  /is-what/4.1.8:
+    resolution: {integrity: sha512-yq8gMao5upkPoGEU9LsB2P+K3Kt8Q3fQFCGyNCWOAnJAMzEXVV9drYb0TXr42TTliLLhKIBvulgAXgtLLnwzGA==}
+    engines: {node: '>=12.13'}
+    dev: false
+
   /is-windows/1.0.2:
     resolution: {integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==}
     engines: {node: '>=0.10.0'}
@@ -2937,6 +2958,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /randombytes/2.1.0:
+    resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
+    dependencies:
+      safe-buffer: 5.2.1
+    dev: false
+
   /read-pkg-up/3.0.0:
     resolution: {integrity: sha512-YFzFrVvpC6frF1sz8psoHDBGF7fLPc+llq/8NB43oagqWkx8ar5zYtsTORtOjw9W2RHLpWP+zTWwBvf1bCmcSw==}
     engines: {node: '>=4'}
@@ -3133,7 +3160,6 @@ packages:
 
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
-    dev: true
 
   /semver-compare/1.0.0:
     resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
@@ -3156,6 +3182,12 @@ packages:
     dependencies:
       lru-cache: 6.0.0
     dev: true
+
+  /serialize-javascript/6.0.0:
+    resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
+    dependencies:
+      randombytes: 2.1.0
+    dev: false
 
   /set-blocking/2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -3385,6 +3417,13 @@ packages:
       pirates: 4.0.5
       ts-interface-checker: 0.1.13
     dev: true
+
+  /superjson/1.12.1:
+    resolution: {integrity: sha512-HMTj43zvwW5bD+JCZCvFf4DkZQCmiLTen4C+W1Xogj0SPOpnhxsriogM04QmBVGH5b3kcIIOr6FqQ/aoIDx7TQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      copy-anything: 3.0.3
+    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}

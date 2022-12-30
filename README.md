@@ -15,11 +15,14 @@
 
 Add undo and redo methods to any your pinia 🍍 stores!
 
+This works with various types of values in the state, which include Dates, BigInts, Functions, Maps, Sets, circular objs and more. The original fork has issues.
+
 ## Installation
 
 ```sh
 npm install pinia-plugin-history
 ```
+
 or
 
 ```sh
@@ -39,21 +42,23 @@ You can then use a `history` option in your stores:
 
 ```ts
 defineStore('id', () => {
-    const count = ref(2)
-
-    return { count }
+  const count = ref(2)
+  
+  return { count }
 }, { history: true })
 ```
-or 
+
+or
 
 ```ts
 defineStore('id', {
-    state: () => ({ count:  2}),
-    history: true
+  state:   () => ({ count: 2 }),
+  history: true
 })
 ```
 
-This will automatically add two actions `undo` and `redo` as well as two getters `canUndo` and `canRedo` to you store. It will also automatically add the proper typings if you're using TypeScript 🎉
+This will automatically add two actions `undo` and `redo` as well as two getters `canUndo` and `canRedo` to you store. It will also automatically add the proper typings if you're
+using TypeScript 🎉
 
 ### Example
 
@@ -85,23 +90,28 @@ This will automatically add two actions `undo` and `redo` as well as two getters
 
 You may also pass some extra configuration to the `history` option.
 
-
 ```ts
 defineStore('id', {
-    state: () => ({ count:  2}),
-    history: {
-        max: 25, // Maximum number of items to keep in history (default: 10)
-
-        persistent: true, // Whether to store the current history locally in your browser (default: false)
-
-        persistentStrategy: { // How to store locally in your broswer (default: use `localStorage` if available)
-            get(store: HistoryStore, type: 'undo' | 'redo'): string[] | undefined,
-            set(store: HistoryStore, type: 'undo' | 'redo', value: string[]): void,
-            remove(store: HistoryStore, type: 'undo' | 'redo'): void
-        } 
+  state:   () => ({ count: 2, toIgnore: 'this will be ignored thru options' }),
+  history: {
+    max:  25, // Maximum number of items to keep in history (default: 10)
+    omit: ['toIgnore'], // shallow
+    
+    persistent: true, // Whether to store the current history locally in your browser (default: false)
+    
+    persistentStrategy: { // How to store locally in your broswer (default: use `localStorage` if available)
+      get (store: HistoryStore, type: 'undo' | 'redo'): string[] | undefined,
+      set (store: HistoryStore, type: 'undo' | 'redo', value: string[]): void,
+      remove (store: HistoryStore, type: 'undo' | 'redo'): void
     }
+  }
 })
 ```
+
+## Acknowledgements
+
+**Yasser Lahbibi**: yasser.lahbibi@sciencespo.fr - the difference with this one is the use of a better cloning strategy that tries to keep the original objects as they were and also works with functions. Plus other various additions features and options.
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
