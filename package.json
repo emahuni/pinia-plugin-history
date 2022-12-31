@@ -1,6 +1,6 @@
 {
   "name": "@emanimation/pinia-plugin-history",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Create a history (undo/redo) in your pinia 🍍 stores! for various types of state values, which include Dates, BigInts, Functions, Maps, Sets, circular objs and more.",
   "publishConfig": {
     "access": "public"
