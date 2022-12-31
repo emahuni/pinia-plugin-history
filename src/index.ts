@@ -229,6 +229,7 @@ function createStackMethod (
     method: 'undo' | 'redo',
 ) {
   const can = method === 'undo' ? 'canUndo' : 'canRedo';
+  // todo allow a param to be passed to stack methods that allows undo/redo of specific store state props?
   return () => {
     if ($store[can]) {
       const { undone, done, max, current } = $history;
@@ -272,7 +273,7 @@ function createWatcher ($store: HistoryStore, $history: History) {
       }
       
       done.push(current);
-      $history.undone = []; // todo is this correct or we need to push something into undone
+      $history.undone = [];
       persistHistory($store, $history);
     }
     

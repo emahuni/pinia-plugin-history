@@ -6,9 +6,8 @@
     "access": "public"
   },
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "unpkg": "dist/index.global.js",
-  "jsdelivr": "dist/index.global.js",
+  "unpkg": "./dist/index.global.js",
+  "jsdelivr": "./dist/index.global.js",
   "types": "./dist/index.d.ts",
   "exports": {
     "require": "./dist/index.js",
@@ -34,9 +33,10 @@
     "lint": "prettier -c --parser typescript \"src/**/*.[jt]s?(x)\"",
     "lint:fix": "yarn run lint --write",
     "test:types": "tsc --build ./tsconfig.json",
-    "build": "yarn build:esm & yarn build:iife & wait",
-    "build:esm": "tsup src/index.ts --format esm,cjs --dts --target es2020",
-    "build:iife": "tsup src/index.ts --format iife --minify --global-name PiniaHistory --target es2020"
+    "clean": "rimraf --no-glob dist",
+    "build": "yarn clean && tsc & yarn build:iife & wait",
+    "build:esm": "tsup src/index.ts --format esm --dts --target es2018",
+    "build:iife": "tsup src/index.ts --format iife --minify --global-name PiniaHistory --target es2018"
   },
   "files": [
     "dist/*.js",
@@ -54,8 +54,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lzutf8": "^0.6.0",
-    "@emanimation/js-serial-js": "^1.0.0"
+    "@emanimation/js-serial-js": "^1.0.1",
+    "lzutf8": "^0.6.0"
   },
   "devDependencies": {
     "@pinia/testing": "^0.0.14",
@@ -72,6 +72,7 @@
     "nyc": "^15.1.0",
     "pinia": "^2.0.28",
     "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "semver": "^7.3.5",
     "source-map-support": "^0.5.19",
     "ts-node": "^10.1.0",
@@ -95,10 +96,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yassilah/pinia-plugin-history.git"
+    "url": "git+https://github.com/emahuni/pinia-plugin-history.git"
   },
   "bugs": {
-    "url": "https://github.com/yassilah/pinia-plugin-history/issues"
+    "url": "https://github.com/emahuni/pinia-plugin-history/issues"
   },
-  "homepage": "https://github.com/yassilah/pinia-plugin-history#readme"
+  "homepage": "https://github.com/emahuni/pinia-plugin-history#readme"
 }

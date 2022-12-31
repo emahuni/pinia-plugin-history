@@ -1,14 +1,30 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "noEmit": true,
+    "target": "ES2018",
+    "module": "ES2020",
+    "lib": ["ES2018","DOM", "ESNext"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "noEmit": false,
+    "noEmitOnError": false,
     "strict": true,
-    "composite": true,
+    //    "composite": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "rootDir": ".",
-    "baseUrl": "."
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": [
+    "./src/**.ts"
+  ],
+  "exclude": [
+    "./src/*.spec.*",
+    "./node_modules/**",
+    "./dist/**",
+    "./scripts/**"
+  ]
 }

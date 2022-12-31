@@ -28,7 +28,7 @@ async function main() {
   const pkg = JSON.parse(
     await fs.readFile(resolve(__dirname, '../package.json'), 'utf-8')
   )
-  const { version: currentVersion } = pkg
+  const { version: currentVersion } = pkg // todo revert to currentVersion on error or abort if version was ever changed
 
   const { release } = await prompt({
     type: 'select',
