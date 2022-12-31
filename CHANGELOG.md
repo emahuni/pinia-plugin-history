@@ -1,3 +1,8 @@
+## [2.0.1](https://github.com/emahuni/pinia-plugin-history/compare/v2.0.0...v2.0.1) (2022-12-31)
+* **build:** Config & use tsc to reduce bundle sizes. tsup is producing ridiculous bundles sizes (as much as 7MB) for this small lib.
+
+
+
 # 2.0.0 (2022-12-30)
 
 
