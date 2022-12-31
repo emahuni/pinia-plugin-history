@@ -94,6 +94,7 @@ async function main() {
   await run('git', ['commit', '-m', `release: v${targetVersion}`])
   await run('git', ['tag', `v${targetVersion}`])
 
+  // todo make sure yarn doesn't ask for version again
   // Publish the package.
   step('\nPublishing the package...')
   await run('yarn', [

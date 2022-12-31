@@ -3,19 +3,17 @@
   Pinia Plugin History
 </h1>
 
-<a href="https://npmjs.com/package/pinia-plugin-history">
-  <img src="https://badgen.net/npm/v/pinia-plugin-history" alt="npm package">
+<a href="https://npmjs.com/package/@emanimation/pinia-plugin-history">
+  <img src="https://badgen.net/npm/v/@emanimation/pinia-plugin-history" alt="npm package">
 </a>
-<a href="https://github.com/yassilah/pinia-plugin-history/actions/workflows/run-tests.yml">
-  <img src="https://github.com/yassilah/pinia-plugin-history/actions/workflows/run-tests.yml/badge.svg" alt="build status">
+<a href="https://github.com/emahuni/pinia-plugin-history/actions/workflows/run-tests.yml">
+  <img src="https://github.com/emahuni/pinia-plugin-history/actions/workflows/run-tests.yml/badge.svg" alt="build status">
 </a>
-<a href="https://codecov.io/gh/yassilah/pinia-plugin-history">
-  <img src="https://codecov.io/gh/yassilah/pinia-plugin-history/branch/main/graph/badge.svg"/>
+<a href="https://codecov.io/gh/emahuni/pinia-plugin-history">
+  <img src="https://codecov.io/gh/emahuni/pinia-plugin-history/branch/main/graph/badge.svg"/>
 </a>
 
-Add undo and redo methods to any your pinia 🍍 stores!
-
-This works with various types of values in the state, which include Dates, BigInts, Functions, Maps, Sets, circular objs and more. The original fork has issues.
+Add undo and redo methods to any of your pinia 🍍 stores! for various types of state values, which include Dates, BigInts, Functions, Maps, Sets, circular objs and more.
 
 ## Installation
 
