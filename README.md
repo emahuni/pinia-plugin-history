@@ -66,14 +66,14 @@ using TypeScript 🎉
 
 <template>
   <div>
-    <button :disabled="!store.canUndo" @click="undo">Undo</button>
-    <button :disabled="!store.canRedo" @click="redo">Redo</button>
+    <button :disabled="!store.canUndo" @click="store.undo">Undo</button>
+    <button :disabled="!store.canRedo" @click="store.redo">Redo</button>
     <input type="number" v-model="store.count"/>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useStore } from '@/store';
+  import { useStore } from '@/store'; // store defined in another file as above
 
   const store = useStore();
 
@@ -82,7 +82,6 @@ using TypeScript 🎉
   console.log(store.count); // => 2
   store.redo(); // redoes the earlier assignment of 5
   console.log(store.count); // => 5
-
 </script>
 ```
 
